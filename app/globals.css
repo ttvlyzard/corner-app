@@ -1,0 +1,88 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+  height: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+
+:root {
+  --color-bg: 246 241 228;
+  --color-line: 228 218 197;
+  --color-ink: 43 32 22;
+  --color-ink-soft: 92 74 58;
+  --color-accent: 107 142 78;
+  --color-accent-deep: 63 90 46;
+  --color-accent-pale: 227 237 214;
+}
+
+[data-theme="dark"] {
+  --color-bg: 28 24 19;
+  --color-line: 56 47 36;
+  --color-ink: 240 234 222;
+  --color-ink-soft: 196 184 166;
+  --color-accent-pale: 40 51 29;
+}
+
+body {
+  background-color: rgb(var(--color-bg));
+  color: rgb(var(--color-ink));
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+@layer components {
+  .btn-primary {
+    @apply inline-flex items-center justify-center rounded-full bg-matcha px-6 py-3
+    font-sans font-bold uppercase tracking-wide text-sm text-cream
+    shadow-[0_3px_0_0_theme(colors.matcha-deep)]
+    transition-all duration-150 hover:bg-matcha-deep hover:shadow-[0_1px_0_0_theme(colors.matcha-deep)] hover:translate-y-[2px]
+    active:scale-95
+    disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center rounded-full border-2 border-espresso bg-transparent px-6 py-3
+    font-sans font-bold uppercase tracking-wide text-sm text-espresso
+    transition-all duration-150 hover:bg-espresso hover:text-cream active:scale-95
+    disabled:opacity-50 disabled:pointer-events-none;
+  }
+
+  .btn-danger-ghost {
+    @apply inline-flex items-center justify-center rounded-full px-4 py-2
+    font-sans font-bold uppercase tracking-wide text-xs text-rust
+    transition-colors hover:bg-rust/10;
+  }
+
+  .card {
+    @apply rounded-xl2 border-2 border-cream-line bg-white/70 p-6 backdrop-blur-sm;
+  }
+
+  .input-field {
+    @apply w-full rounded-xl border-2 border-cream-line bg-white px-4 py-2.5 font-sans text-espresso
+    placeholder:text-espresso-soft/50
+    focus:border-matcha focus:outline-none focus:ring-2 focus:ring-matcha/20;
+  }
+
+  .eyebrow {
+    @apply font-sans text-xs font-bold uppercase tracking-[0.2em] text-matcha-deep;
+  }
+
+  .badge {
+    @apply inline-flex items-center gap-1.5 rounded-full px-3 py-1 font-sans text-xs font-bold uppercase tracking-wide;
+  }
+  .badge-pending { @apply badge bg-cream-line/60 text-espresso-soft; }
+  .badge-submitted { @apply badge bg-caramel/20 text-caramel; }
+  .badge-approved { @apply badge bg-matcha-pale text-matcha-deep; }
+  .badge-redo { @apply badge bg-rust/10 text-rust; }
+
+  .stamp {
+    @apply flex h-9 w-9 items-center justify-center rounded-full border-2 font-display text-sm;
+  }
+  .stamp-filled { @apply stamp border-matcha bg-matcha text-cream; }
+  .stamp-empty { @apply stamp border-dashed border-cream-line text-cream-line; }
+
+  .ticket {
+    @apply relative rounded-2xl border-2 border-dashed border-matcha-deep/40 bg-matcha-pale/50 p-6;
+  }
+}
