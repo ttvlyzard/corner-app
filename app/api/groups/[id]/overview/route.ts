@@ -45,7 +45,7 @@ export const GET = apiRoute(async (req: Request, { params }: { params: Promise<{
 
     weeklyTotal = weekChores?.length ?? 0;
     weeklyApproved = (weekChores ?? []).filter(
-      // @ts-expect-error - joined relation shape
+      
       (c) => c.chore_submissions?.[0]?.status === "approved"
     ).length;
   }
