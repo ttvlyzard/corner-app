@@ -14,7 +14,7 @@ export async function createClient() {
         get(name: string) {
           return cookieStore.get(name)?.value;
         },
-        set(name: string, value: string, options) {
+        set(name: string: any, value: string: any, options: any) {
           cookieStore.set({ name, value, ...options });
         },
         remove(name: string, options) {
