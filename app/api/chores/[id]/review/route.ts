@@ -29,11 +29,11 @@ export const POST = apiRoute(async (req: Request, { params }: { params: Promise<
   if (error) return NextResponse.json({ error: error.message }, { status: 500 });
   if (!submission) return NextResponse.json({ error: "Not found or not yours to review" }, { status: 404 });
 
- 
+  // @ts-expect-error - joined relation shape
   const membership = submission.chores.memberships;
-  
+  // @ts-expect-error - joined relation shape
   const membershipId = submission.chores.membership_id;
-  
+  // @ts-expect-error - joined relation shape
   const dueDate = submission.chores.due_date;
 
   if (decision === "approved") {
@@ -48,7 +48,7 @@ export const POST = apiRoute(async (req: Request, { params }: { params: Promise<
       .eq("due_date", dueDate);
 
     const allApproved = (sameDayChores ?? []).every(
-      
+      // @ts-expect-error - joined relation shape
       (c) => c.chore_submissions?.[0]?.status === "approved"
     );
 
@@ -69,9 +69,9 @@ export const POST = apiRoute(async (req: Request, { params }: { params: Promise<
 
   await notifyDiscord(
     decision === "approved"
-     
+      // @ts-expect-error - joined relation shape
       ? `✅ ${membership.display_name} — "${submission.chores.title}" approved`
-      
+      // @ts-expect-error - joined relation shape
       : `↩️ ${membership.display_name} — "${submission.chores.title}" sent back for redo`
   );
 

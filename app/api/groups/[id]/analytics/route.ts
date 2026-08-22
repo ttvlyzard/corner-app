@@ -22,10 +22,10 @@ export const GET = apiRoute(async (req: Request, { params }: { params: Promise<{
         .eq("membership_id", m.id);
 
       const total = chores?.length ?? 0;
-      
+      // @ts-expect-error - joined relation shape
       const approved = (chores ?? []).filter((c) => c.chore_submissions?.[0]?.status === "approved").length;
       const redos = (chores ?? []).filter(
-        
+        // @ts-expect-error - joined relation shape
         (c) => c.chore_submissions?.[0]?.status === "needs_redo"
       ).length;
 
